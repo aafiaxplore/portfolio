@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aafia Akram - Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #d4e4d4; /* Light mint */
+            --text-color: #2e2e2e; /* Dark gray */
+            --nav-bg: #2e4f4f; /* Forest green */
+            --nav-text: #d4e4d4; /* Light mint */
+            --nav-hover: #a8b5a2; /* Sage green */
+            --card-bg: #a8b5a2; /* Sage green */
+            --accent: #6b7280; /* Olive green */
+            --accent-hover: #5a6268; /* Darker olive */
+            --chatbot-body-bg: #d4e4d4; /* Light mint */
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a2a2a; /* Dark teal */
+            --text-color: #f5f5f5; /* Off-white */
+            --nav-bg: #1c3c3c; /* Darker forest green */
+            --nav-text: #f5f5f5; /* Off-white */
+            --nav-hover: #8a9a8a; /* Darker sage green */
+            --card-bg: #2e4f4f; /* Dark forest green */
+            --accent: #8a9a8a; /* Dark sage green */
+            --accent-hover: #6b7280; /* Olive green */
+            --chatbot-body-bg: #2e4f4f; /* Dark forest green */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--nav-bg);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-title {
+            color: var(--nav-text);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .theme-toggle {
+            background: var(--accent);
+            border: none;
+            color: var(--nav-text);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.6rem 1rem;
+            border-radius: 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-hover);
+        }
+
+        .nav-links a {
+            margin-left: 1.5rem;
+            text-decoration: none;
+            color: var(--nav-text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--nav-hover);
+        }
+
+        /* About Section */
+        .about {
+            max-width: 1200px;
+            margin: 5rem auto 4rem;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .profile-container {
+            margin-bottom: 2rem;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto;
+            border: 4px solid var(--accent);
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            margin-top: 1rem;
+            color: var(--text-color);
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .about-text,
+        .skills {
+            flex: 1;
+            min-width: 250px;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+        }
+
+        .about-text h2,
+        .skills h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .skills ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .skills li {
+            background: var(--accent);
+            color: var(--nav-text);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 1rem;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--bg-color);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .projects h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        .project-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 360px;
+            break-inside: avoid;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-card h3 {
+            padding: 1rem;
+            font-size: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .project-card p {
+            padding: 0 1rem 1rem;
+            color: var(--text-color);
+        }
+
+        /* Campus Involvement Section */
+        .campus-map {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .campus-map h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .badge {
+            position: guest;
+            width: 120px;
+            height: 120px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .badge:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .badge span {
+            color: var(--nav-text);
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .badge-info {
+            display: none;
+            position: absolute;
+            top: 130px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            padding: 1rem;
+            border-radius: 10px;
+            width: 250px;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .badge:hover .badge-info {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .badge-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge-info p {
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 0;
+            background: url('https://images.unsplash.com/photo-1526778548025-fa2f539ff6c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=60') center/cover no-repeat;
+            border-radius: 15px;
+            overflow: visible;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+            border-radius: 15px;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .contact p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .social-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            margin-top: 2rem;
+        }
+
+        .social-signboard {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: swing 2s ease-in-out infinite;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-signboard:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-signboard img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        @keyframes swing {
+            0%, 100% {
+                transform: rotate(5deg);
+            }
+            50% {
+                transform: rotate(-5deg);
+            }
+        }
+
+        /* Chat Bubble */
+        .chat-bubble {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: var(--nav-text);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            z-index: 1000;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .chat-bubble:hover {
+            transform: scale(1.1);
+            background: var(--accent-hover);
+        }
+
+        /* Chatbot Overlay */
+        .chatbot-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chatbot-window {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-header {
+            background: var(--nav-bg);
+            color: var(--nav-text);
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .chatbot-header-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+        }
+
+        .chatbot-close {
+            cursor: pointer;
+            font-size: 1.5rem;
+            line-height: 1;
+            margin-left: auto;
+        }
+
+        .chatbot-body {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: var(--chatbot-body-bg);
+        }
+
+        .chat-message {
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-message.user {
+            align-items: flex-end;
+        }
+
+        .chat-message.ai {
+            align-items: flex-start;
+        }
+
+        .chat-message p {
+            max-width: 70%;
+            padding: 0.8rem;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .chat-message.user p {
+            background: var(--accent);
+            color: var(--nav-text);
+        }
+
+        .chat-message.ai p {
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0.8rem;
+            max-width: 70%;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--text-color);
+            border-radius: 50%;
+            margin: 0 4px;
+            animation: typing 1s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(0.5);
+                opacity: 0.5;
+            }
+        }
+
+        .chatbot-footer {
+            padding: 1rem;
+            background: var(--card-bg);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            font-size: 1rem;
+            background: var(--chatbot-body-bg);
+            color: var(--text-color);
+        }
+
+        .chatbot-input:focus {
+            outline: none;
+            border-color: var(--nav-bg);
+        }
+
+        .chatbot-send {
+            background: var(--accent);
+            color: var(--nav-text);
+            padding: 0.8rem 1.2rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .chatbot-send:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-title {
+                font-size: 1.3rem;
+            }
+
+            .nav-links a {
+                margin: 0 0.5rem;
+            }
+
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .profile-name,
+            .projects h2,
+            .contact h2,
+            .campus-map h2 {
+                font-size: 2rem;
+            }
+
+            .about-text h2,
+            .skills h2 {
+                font-size: 1.5rem;
+            }
+
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+            }
+
+            .chat-bubble {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .chatbot-window {
+                width: 90%;
+                height: 80%;
+            }
+
+            .chatbot-header-img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .badge {
+                width: 100px;
+                height: 100px;
+            }
+
+            .badge-info {
+                width: 200px;
+            }
+
+            .social-signboard {
+                width: 60px;
+                height: 60px;
+            }
+
+            .social-signboard img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .project-card p {
+                font-size: 0.9rem;
+            }
+
+            .profile-pic {
+                width: 100px;
+                height: 100px;
+            }
+
+            .profile-name {
+                font-size: 1.5rem;
+            }
+
+            .chatbot-window {
+                width: 95%;
+                height: 85%;
+            }
+
+            .chatbot-header-img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .badge {
+                width: 80px;
+                height: 80px;
+            }
+
+            .badge span {
+                font-size: 0.9rem;
+            }
+
+            .badge-info {
+                width: 180px;
+            }
+
+            .social-signboard {
+                width: 50px;
+                height: 50px;
+            }
+
+            .social-signboard img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <span class="nav-title">Portfolio</span>
+            <div class="nav-links">
+                <button class="theme-toggle" title="Toggle Theme">🌙</button>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#campus-map">Campus Involvement</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="profile-container">
+            <img src="https://i.ibb.co/1f1wRjk3/aafia-profile-pictue.jpg" alt="Aafia Akram Profile Picture" class="profile-pic">
+            <h1 class="profile-name">Aafia Akram</h1>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>I am Aafia Akram, a 1st-year B.Tech Computer Science Engineering student at Sister Nivedita University, Kolkata, West Bengal. I studied at The BSS School, where I developed a strong foundation. I am passionate about web development, specializing in creating user-friendly, responsive websites that combine aesthetic design with seamless functionality. Proficient in HTML, CSS, JavaScript, React, Node.js, and Git, I am dedicated to building innovative digital solutions and continuously enhancing my skills through hands-on projects. My hobbies include reading books, engaging in productive helping, teaching, and exploring various activities.</p>
+            </div>
+            <div class="skills">
+                <h2>Skills</h2>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>Tailwind CSS</li>
+                    <li>JavaScript</li>
+                    <li>React</li>
+                    <li>Node.js</li>
+                    <li>Git</li>
+                    <li>VS Code</li>
+                    <li>Chrome DevTools</li>
+                    <li>Figma</li>
+                    <li>Adobe XD</li>
+                    <li>Communication</li>
+                    <li>Team Collaboration</li>
+                    <li>Problem Solving</li>
+                    <li>Time Management</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="https://i.ibb.co/mrVktNhs/carbomfootprint.jpg" alt="Aetherly Dashboard">
+                <h3>Aetherly</h3>
+                <p>A Digital Carbon Footprint Tracker built during SREY2K25 Hackathon at St. Thomas' College, Kolkata. Tracks emissions from digital activities, offers eco-tips, and awards badges for sustainable habits.</p>
+            </div>
+            <div class="project-card">
+                <img src="https://i.ibb.co/G486Qhf7/Screenshot-2025-06-14-021832.png" alt="Shifael Interface">
+                <h3>Shifael</h3>
+                <p>A platform connecting patients needing rare blood groups or organ donors with verified donors across India. Features health unit locator and community building for sustainable healthcare.</p>
+            </div>
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Token Bazar Interface">
+                <h3>Token Bazar</h3>
+                <p>A smart contract on Core blockchain for token transactions, integrated with MetaMask. Explores Web3 with hands-on experience in live transactions.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Involvement Section -->
+    <section id="campus-map" class="campus-map">
+        <h2>Campus Involvement</h2>
+        <div class="badge-container">
+            <div class="badge" id="skepsis">
+                <span>SKEPSIS</span>
+                <div class="badge-info">
+                    <h3>SKEPSIS</h3>
+                    <p><strong>Role:</strong> Social Media Manager</p>
+                    <p><strong>Duration:</strong> 2024 - Present</p>
+                    <p><strong>Contributions:</strong> Managed social media campaigns, increased engagement by 30%, and designed promotional graphics.</p>
+                </div>
+            </div>
+            <div class="badge" id="ignatius">
+                <span>IGNATIUS SNU</span>
+                <div class="badge-info">
+                    <h3>IGNATIUS SNU</h3>
+                    <p><strong>Role:</strong> Social Media Manager</p>
+                    <p><strong>Duration:</strong> 2024 - Present</p>
+                    <p><strong>Contributions:</strong> Created content strategies, boosted online presence, and coordinated event promotions.</p>
+                </div>
+            </div>
+            <div class="badge" id="gfg">
+                <span>GFG SNU</span>
+                <div class="badge-info">
+                    <h3>GFG SNU</h3>
+                    <p><strong>Role:</strong> Social Media Manager</p>
+                    <p><strong>Duration:</strong> 2024 - Present</p>
+                    <p><strong>Contributions:</strong> Promoted coding events, grew community by 25%, and managed live event coverage.</p>
+                </div>
+            </div>
+            <div class="badge" id="intereact">
+                <span>INTEREACT CLUB</span>
+                <div class="badge-info">
+                    <h3>INTEREACT CLUB</h3>
+                    <p><strong>Role:</strong> Director</p>
+                    <p><strong>Duration:</strong> 2022 - 2023</p>
+                    <p><strong>Contributions:</strong> Led community service projects, organized charity events, and mentored team members.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-card">
+            <h2>Contact Me</h2>
+            <p>Feel free to reach out for collaborations or just to say hi!</p>
+            <p>Email: aafiaakram.projects@gmail.com</p>
+            <div class="social-container">
+                <a href="https://www.linkedin.com/in/aafiaakram" target="_blank" class="social-signboard">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/600px-LinkedIn_logo_initials.png" alt="LinkedIn">
+                </a>
+                <a href="https://www.instagram.com/aafia_922" target="_blank" class="social-signboard">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/600px-Instagram_icon.png" alt="Instagram">
+                </a>
+                <a href="https://github.com/aafiaxplore" target="_blank" class="social-signboard">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/600px-Octicons-mark-github.svg.png" alt="GitHub">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Bubble -->
+    <div class="chat-bubble">Ask anything about me</div>
+
+    <!-- Chatbot Overlay -->
+    <div class="chatbot-overlay">
+        <div class="chatbot-window">
+            <div class="chatbot-header">
+                <img src="https://i.ibb.co/Hp45LQN3/aafia-profile-pictue.jpg" alt="Aafia Akram Profile Picture" class="chatbot-header-img">
+                <span>Chat with Aafia's Assistant</span>
+                <span class="chatbot-close">×</span>
+            </div>
+            <div class="chatbot-body">
+                <!-- Chat messages will be appended here -->
+            </div>
+            <div class="chatbot-footer">
+                <input type="text" class="chatbot-input" placeholder="Type your message...">
+                <button class="chatbot-send">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyDXQOuY7RD-DUm3UZgmx7apygX_DFyra4w",
+            authDomain: "aafia-s-portfolio.firebaseapp.com",
+            projectId: "aafia-s-portfolio",
+            storageBucket: "aafia-s-portfolio.firebasestorage.app",
+            messagingSenderId: "782932239498",
+            appId: "1:782932239498:web:f84926114d266097107973",
+            measurementId: "G-FFH4JVMV8Z"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        // Theme toggle functionality
+        const themeToggle = document.querySelector('.theme-toggle');
+        const html = document.documentElement;
+
+        // Load saved theme from localStorage
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+        // Toggle theme on click
+        themeToggle.addEventListener('click', () => {
+            console.log('Theme toggle clicked');
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        });
+
+        // Smooth scrolling for nav links
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                window.scrollTo({
+                    top: targetElement.offsetTop - 60,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Chatbot functionality
+        const chatBubble = document.querySelector('.chat-bubble');
+        const chatbotOverlay = document.querySelector('.chatbot-overlay');
+        const chatbotClose = document.querySelector('.chatbot-close');
+        const chatbotBody = document.querySelector('.chatbot-body');
+        const chatbotInput = document.querySelector('.chatbot-input');
+        const chatbotSend = document.querySelector('.chatbot-send');
+
+        const myFullname = 'Aafia Akram';
+        const myDescription = 'I am Aafia Akram, a 1st-year B.Tech Computer Science Engineering student at Sister Nivedita University, Kolkata, West Bengal. I studied at The BSS School, where I developed a strong foundation. I am passionate about web development, specializing in creating user-friendly, responsive websites that combine aesthetic design with seamless functionality. Proficient in HTML, CSS, JavaScript, React, Node.js, and Git, I am dedicated to building innovative digital solutions and continuously enhancing my skills through hands-on projects. My hobbies include reading books, engaging in productive helping, teaching, and exploring various activities.';
+        const apiKey = 'AIzaSyDkjJ1A2YLzXbXIua-kMKNEzDJcIeDrSWA'; // Your Gemini API key
+
+        // Open chatbot and show initial message
+        chatBubble.addEventListener('click', () => {
+            console.log('Chat bubble clicked');
+            chatbotOverlay.style.display = 'flex';
+            // Clear previous messages
+            chatbotBody.innerHTML = '';
+            // Add initial AI message
+            const initialMessage = document.createElement('div');
+            initialMessage.classList.add('chat-message', 'ai');
+            initialMessage.innerHTML = `<p>Hi, I am ${myFullname}, what do you want to know about me?</p>`;
+            chatbotBody.appendChild(initialMessage);
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        });
+
+        // Close chatbot
+        chatbotClose.addEventListener('click', () => {
+            console.log('Chatbot close clicked');
+            chatbotOverlay.style.display = 'none';
+        });
+
+        // Send message
+        chatbotSend.addEventListener('click', () => {
+            console.log('Send button clicked');
+            sendMessage();
+        });
+
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                console.log('Enter key pressed');
+                sendMessage();
+            }
+        });
+
+        async function sendMessage() {
+            const messageText = chatbotInput.value.trim();
+            if (!messageText) {
+                console.log('No message entered');
+                return;
+            }
+
+            console.log('Sending message:', messageText);
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('chat-message', 'user');
+            userMessage.innerHTML = `<p>${messageText}</p>`;
+            chatbotBody.appendChild(userMessage);
+
+            // Clear input
+            chatbotInput.value = '';
+
+            // Add typing indicator
+            const typingIndicator = document.createElement('div');
+            typingIndicator.classList.add('chat-message', 'ai', 'typing-indicator');
+            typingIndicator.innerHTML = `<span></span><span></span><span></span>`;
+            chatbotBody.appendChild(typingIndicator);
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+
+            // Check for valid API key
+            if (!apiKey || apiKey === 'YOUR_GEMINI_API_KEY') {
+                console.error('API key missing or invalid');
+                typingIndicator.remove(); // Remove typing indicator
+                const errorMessage = document.createElement('div');
+                errorMessage.classList.add('chat-message', 'ai');
+                errorMessage.innerHTML = `<p>Please provide a valid Gemini API key to continue.</p>`;
+                chatbotBody.appendChild(errorMessage);
+                chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                return;
+            }
+
+            // Call Gemini API
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: `User_message: ${messageText}. Reply naturally to the usermessage and if required then answer based on: ${myDescription} or just simply give friendly reply. Reply in a way that Aafia Akram is himself talking. Reply in short sentences.`
+                            }]
+                        }]
+                    })
+                });
+
+                typingIndicator.remove(); // Remove typing indicator
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('API response:', data); // Debug log
+                let aiResponseText = 'Something went wrong. Try again!';
+                // Safely parse response
+                if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text) {
+                    aiResponseText = data.candidates[0].content.parts[0].text;
+                } else {
+                    console.error('Unexpected API response structure:', data);
+                }
+
+                // Add AI response
+                const aiMessage = document.createElement('div');
+                aiMessage.classList.add('chat-message', 'ai');
+                aiMessage.innerHTML = `<p>${aiResponseText}</p>`;
+                chatbotBody.appendChild(aiMessage);
+            } catch (error) {
+                typingIndicator.remove(); // Remove typing indicator
+                console.error('API error:', error.message);
+                const errorMessage = document.createElement('div');
+                errorMessage.classList.add('chat-message', 'ai');
+                errorMessage.innerHTML = `<p>Oops, something went wrong. Let's try again!</p>`;
+                chatbotBody.appendChild(errorMessage);
+            }
+
+            // Scroll to bottom
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        }
+    </script>
+</body>
+</html>
